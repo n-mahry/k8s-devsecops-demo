@@ -2,6 +2,10 @@
 
 A minimal Kubernetes + DevSecOps project for KCNA exam preparation.
 
+## Architecture
+<img width="1384" height="930" alt="image" src="https://github.com/user-attachments/assets/0cad98c9-e504-49a8-8945-aecc587ed3b2" />
+
+
 ## What's inside
 
 ```
