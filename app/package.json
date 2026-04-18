@@ -1,0 +1,13 @@
+{
+  "name": "k8s-devsecops-demo",
+  "version": "1.0.0",
+  "description": "Simple app for practising Kubernetes and DevSecOps (KCNA prep)",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "node test.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
