@@ -1,0 +1,76 @@
+<svg width="680" height="480" viewBox="0 0 680 480" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>k8s-devsecops-demo architecture</title>
+  <desc>Flow from developer code push through GitHub Actions CI/CD pipeline to a Kubernetes cluster</desc>
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="#888780" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="arrow-dashed" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="#888780" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <!-- ── Developer box ───────────────────────────────────────────────────── -->
+  <rect x="40" y="60" width="120" height="56" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+  <text x="100" y="82" text-anchor="middle" font-family="ui-sans-serif,system-ui,sans-serif" font-size="14" font-weight="500" fill="#2C2C2A">Developer</text>
+  <text x="100" y="100" text-anchor="middle" font-family="ui-sans-serif,system-ui,sans-serif" font-size="12" fill="#5F5E5A">git push</text>
+
+  <!-- ── GitHub Actions box ─────────────────────────────────────────────── -->
+  <rect x="220" y="60" width="140" height="56" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+  <text x="290" y="82" text-anchor="middle" font-family="ui-sans-serif,system-ui,sans-serif" font-size="14" font-weight="500" fill="#26215C">GitHub Actions</text>
+  <text x="290" y="100" text-anchor="middle" font-family="ui-sans-serif,system-ui,sans-serif" font-size="12" fill="#3C3489">CI/CD pipeline</text>
+
+  <!-- dev → github -->
+  <line x1="160" y1="88" x2="218" y2="88" stroke="#888780" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <!-- ── Trivy box ───────────────────────────────────────────────────────── -->
+  <rect x="220" y="185" width="140" height="56" rx="8" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+  <text x="290" y="207" text-anchor="middle" font-family="ui-sans-serif,system-ui,sans-serif" font-size="14" font-weight="500" fill="#4A1B0C">Trivy scan</text>
+  <text x="290" y="225" text-anchor="middle" font-family="ui-sans-serif,system-ui,sans-serif" font-size="12" fill="#712B13">Image vulnerability scan</text>
+
+  <!-- github → trivy -->
+  <line x1="290" y1="116" x2="290" y2="183" stroke="#888780" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <!-- ── Docker build box ───────────────────────────────────────────────── -->
+  <rect x="430" y="60" width="140" height="56" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
+  <text x="500" y="82" text-anchor="middle" font-family="ui-sans-serif,system-ui,sans-serif" font-size="14" font-weight="500" fill="#04342C">Docker build</text>
+  <text x="500" y="100" text-anchor="middle" font-family="ui-sans-serif,system-ui,sans-serif" font-size="12" fill="#085041">Container image</text>
+
+  <!-- github → docker -->
+  <line x1="360" y1="88" x2="428" y2="88" stroke="#888780" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <!-- trivy → docker (if clean) -->
+  <path d="M360 213 L500 213 L500 116" fill="none" stroke="#888780" stroke-width="1" marker-end="url(#arrow)"/>
+  <text x="435" y="206" text-anchor="middle" font-family="ui-sans-serif,system-ui,sans-serif" font-size="12" fill="#5F5E5A">if clean</text>
+
+  <!-- ── K8s cluster container ──────────────────────────────────────────── -->
+  <rect x="40" y="290" width="600" height="160" rx="14" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+  <text x="340" y="316" text-anchor="middle" font-family="ui-sans-serif,system-ui,sans-serif" font-size="14" font-weight="500" fill="#042C53">Kubernetes cluster (minikube / kind)</text>
+
+  <!-- ── Deployment box ─────────────────────────────────────────────────── -->
+  <rect x="80" y="335" width="140" height="56" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
+  <text x="150" y="357" text-anchor="middle" font-family="ui-sans-serif,system-ui,sans-serif" font-size="14" font-weight="500" fill="#04342C">Deployment</text>
+  <text x="150" y="375" text-anchor="middle" font-family="ui-sans-serif,system-ui,sans-serif" font-size="12" fill="#085041">Pod + ReplicaSet</text>
+
+  <!-- ── Service box ────────────────────────────────────────────────────── -->
+  <rect x="270" y="335" width="140" height="56" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+  <text x="340" y="357" text-anchor="middle" font-family="ui-sans-serif,system-ui,sans-serif" font-size="14" font-weight="500" fill="#26215C">Service</text>
+  <text x="340" y="375" text-anchor="middle" font-family="ui-sans-serif,system-ui,sans-serif" font-size="12" fill="#3C3489">NodePort / ClusterIP</text>
+
+  <!-- ── NetworkPolicy box ──────────────────────────────────────────────── -->
+  <rect x="460" y="335" width="148" height="56" rx="8" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+  <text x="534" y="357" text-anchor="middle" font-family="ui-sans-serif,system-ui,sans-serif" font-size="14" font-weight="500" fill="#4A1B0C">NetworkPolicy</text>
+  <text x="534" y="375" text-anchor="middle" font-family="ui-sans-serif,system-ui,sans-serif" font-size="12" fill="#712B13">Restrict traffic</text>
+
+  <!-- docker → k8s cluster -->
+  <line x1="500" y1="116" x2="500" y2="288" stroke="#888780" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <!-- github → k8s (kubectl apply, dashed) -->
+  <path d="M290 116 L290 260 L160 260 L160 289" fill="none" stroke="#888780" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arrow-dashed)"/>
+  <text x="215" y="253" text-anchor="middle" font-family="ui-sans-serif,system-ui,sans-serif" font-size="12" fill="#5F5E5A">kubectl apply</text>
+
+  <!-- internal k8s arrows -->
+  <line x1="220" y1="363" x2="268" y2="363" stroke="#888780" stroke-width="1" marker-end="url(#arrow)"/>
+  <line x1="410" y1="363" x2="458" y2="363" stroke="#888780" stroke-width="1" marker-end="url(#arrow)"/>
+</svg>
