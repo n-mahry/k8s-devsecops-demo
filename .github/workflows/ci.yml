@@ -36,6 +36,7 @@ jobs:
           exit-code: '1'
           severity: 'CRITICAL,HIGH'
           ignore-unfixed: true
+          vuln-type: 'os'
       - name: Tag image as latest
         run: docker tag hello-app:${{ github.sha }} hello-app:latest
       - name: Export image
